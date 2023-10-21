@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 
+import { NavigationContainer } from "@react-navigation/native";
+import Routes from "./src/routes";
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>App pizzaria</Text>
+    <NavigationContainer>
       <StatusBar /*style="auto"*/ />
-    </View>
+      <Routes />
+    </NavigationContainer>
   );
 }
 
