@@ -3,11 +3,15 @@ import { StyleSheet, Text, View, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Routes from "./src/routes";
 
+import { AuthProvider } from "./src/contexts/AuthContex";
+
 export default function App() {
   return (
     <NavigationContainer>
-      <StatusBar /*style="auto"*/ />
-      <Routes />
+      <AuthProvider>
+        <StatusBar /*style="auto"*/ />
+        <Routes />
+      </AuthProvider>
     </NavigationContainer>
   );
 }
