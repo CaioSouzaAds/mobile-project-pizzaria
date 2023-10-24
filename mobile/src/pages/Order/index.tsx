@@ -7,12 +7,29 @@ import {
   StyleSheet,
 } from "react-native";
 
+import { useRoute, RouteProp } from "@react-navigation/native";
+
+type RouteDetailParams = {
+  Order: {
+    number: string | number;
+    order_id: string;
+    name_client: string;
+  };
+};
+
+type OrderRouteProps = RouteProp<RouteDetailParams, "Order">;
+
 import { AuthContext } from "../../contexts/AuthContex";
 
 export default function Order() {
+  const route = useRoute<OrderRouteProps>();
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Order</Text>
+      <Text style={styles.text}>{route.params.order_id}</Text>
+      <Text style={styles.text}>{route.params.number}</Text>
+      <Text style={styles.text}>{route.params.name_client}</Text>
 
       <TextInput
         placeholder="Número da number"

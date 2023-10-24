@@ -11,12 +11,13 @@ import { useNavigation } from "@react-navigation/native";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-import { StackPramsList } from "../../routes/app.routes";
+import { StackParamsList } from "../../routes/app.routes";
 
 import { AuthContext } from "../../contexts/AuthContex";
 
 export default function DashBoard() {
-  const navigation = useNavigation<NativeStackNavigationProp<StackPramsList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<StackParamsList>>();
 
   //const { signOut } = useContext(AuthContext);
   const [number, setnumber] = useState("");
@@ -29,7 +30,7 @@ export default function DashBoard() {
     navigation.navigate("Order", {
       number: number,
       order_id: "c619bedc-5ba9-464b-9387-870e727b263e",
-      name_cliente: "Caio",
+      name_client: "Caio",
     });
   }
 

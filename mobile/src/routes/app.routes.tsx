@@ -4,17 +4,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DashBoard from "../pages/DashBoard";
 import Order from "../pages/Order";
 
-export type StackPramsList = {
+export type StackParamsList = {
   DashBoard: undefined;
   Order: {
     number: number | string;
     order_id: string;
-    name_cliente?: string;
+    name_client?: string;
   };
 };
 
 // Pages for authenticated users 'Attention'
-const Stack = createNativeStackNavigator<StackPramsList>();
+const Stack = createNativeStackNavigator<StackParamsList>();
 
 function AppRoutes() {
   return (
