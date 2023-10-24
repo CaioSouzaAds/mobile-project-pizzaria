@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
-  View,
   Text,
   SafeAreaView,
   TouchableOpacity,
@@ -8,10 +7,31 @@ import {
   StyleSheet,
 } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { StackPramsList } from "../../routes/app.routes";
+
 import { AuthContext } from "../../contexts/AuthContex";
 
 export default function DashBoard() {
-  const { signOut } = useContext(AuthContext);
+  const navigation = useNavigation<NativeStackNavigationProp<StackPramsList>>();
+
+  //const { signOut } = useContext(AuthContext);
+  const [number, setnumber] = useState("");
+
+  async function handleTable() {
+    if (number === "") {
+      return;
+    }
+
+    navigation.navigate("Order", {
+      number: number,
+      order_id: "c619bedc-5ba9-464b-9387-870e727b263e",
+      name_cliente: "Caio",
+    });
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,12 +39,14 @@ export default function DashBoard() {
 
       <TextInput
         style={styles.input}
-        placeholder="Número da mesa"
+        placeholder="Número da number"
         placeholderTextColor="#F0F0F0"
         keyboardType="numeric"
+        value={number}
+        onChangeText={setnumber}
       />
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleTable}>
         <Text style={styles.buttonText}>Abrir mesa</Text>
       </TouchableOpacity>
     </SafeAreaView>
