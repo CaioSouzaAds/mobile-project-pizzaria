@@ -58,17 +58,15 @@ export default function Order() {
         />
       </View>
 
-      <TextInput
-        placeholder="Número da number"
-        placeholderTextColor="#F0F0F0"
-        keyboardType="numeric"
-        //value={}
-        // onChangeText={}
-      />
+      <View style={styles.actions}>
+        <TouchableOpacity style={styles.buttonAdd}>
+          <Text style={styles.buttonText}>+</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text>Criar order</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Avançar</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -76,7 +74,7 @@ export default function Order() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: "5%",
+    paddingVertical: "10%",
     paddingHorizontal: "4%",
     backgroundColor: "#1d1d2e",
   },
@@ -113,5 +111,36 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#FFF",
+    alignItems: "center",
+    textAlignVertical: "center",
+    includeFontPadding: false,
+  },
+  actions: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+  },
+  buttonAdd: {
+    width: "20%",
+    backgroundColor: "#3FD1FF",
+    borderRadius: 4,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "#101026",
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    includeFontPadding: false,
+  },
+  button: {
+    backgroundColor: "#3FFFA3",
+    borderRadius: 4,
+    height: 45,
+    width: "75%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
