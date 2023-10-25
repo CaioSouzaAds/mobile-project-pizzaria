@@ -13,6 +13,8 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { StackParamsList } from "../../routes/app.routes";
 
+import { api } from "../../services/api";
+
 import { AuthContext } from "../../contexts/AuthContex";
 
 export default function DashBoard() {
@@ -20,18 +22,31 @@ export default function DashBoard() {
     useNavigation<NativeStackNavigationProp<StackParamsList>>();
 
   //const { signOut } = useContext(AuthContext);
-  const [number, setnumber] = useState("");
+  const [number, setNumber] = useState("");
 
   async function handleTable() {
     if (number === "") {
       return;
     }
 
-    navigation.navigate("Order", {
-      number: number,
-      order_id: "c619bedc-5ba9-464b-9387-870e727b263e",
-      name_client: "Caio",
-    });
+    try {
+      const response = await api.post("/order", {
+        table: Number(number),
+        name_client: null,
+      });
+
+      const { id, table, name_client } = response.data;
+
+      navigation.navigate("Order", {
+        number: table,
+        order_id: id,
+        name_client: name_client,
+      });
+
+      setNumber("");
+    } catch (err) {
+      console.error("Ocorreu um erro ao processar a solicitação:", err);
+    }
   }
 
   return (
@@ -40,11 +55,11 @@ export default function DashBoard() {
 
       <TextInput
         style={styles.input}
-        placeholder="Número da number"
+        placeholder="Número da mesa"
         placeholderTextColor="#F0F0F0"
         keyboardType="numeric"
         value={number}
-        onChangeText={setnumber}
+        onChangeText={setNumber}
       />
 
       <TouchableOpacity style={styles.button} onPress={handleTable}>
