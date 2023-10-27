@@ -99,6 +99,10 @@ export default function Order() {
     setCategorySelected(item);
   }
 
+  function handleChangeProduct(item: ProductProps) {
+    setProductSelected(item);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -161,9 +165,9 @@ export default function Order() {
         animationType="fade"
       >
         <ModalPicker
-          handleCloseModal={() => setModalCategoryVisible(false)}
-          options={category}
-          selectedItem={(item) => handleChangeCategory(item)}
+          handleCloseModal={() => setModalProductVisible(false)}
+          options={products}
+          selectedItem={(item) => handleChangeProduct(item)}
         />
       </Modal>
     </SafeAreaView>
