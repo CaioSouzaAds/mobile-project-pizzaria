@@ -16,7 +16,8 @@ import { api } from "../../services/api";
 import { ModalPicker } from "../../components/ModalPicker";
 import { ListItem } from "../../components/ListItem";
 
-import { AuthContext } from "../../contexts/AuthContex";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParamsList } from "../../routes/app.routes";
 
 type RouteDetailParams = {
   Order: {
@@ -48,7 +49,8 @@ type OrderRouteProps = RouteProp<RouteDetailParams, "Order">;
 
 export default function Order() {
   const route = useRoute<OrderRouteProps>();
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<StackParamsList>>();
 
   const [category, setCategory] = useState<CategoryProps[] | []>([]);
   const [categorySelected, setCategorySelected] = useState<
@@ -144,6 +146,10 @@ export default function Order() {
     setItems(removeItem);
   }
 
+  async function handleFinishOrder() {
+    navigation.navigate("FinishOrder");
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -188,8 +194,9 @@ export default function Order() {
         <TouchableOpacity
           style={[styles.button, { opacity: items.length === 0 ? 0.4 : 1 }]}
           disabled={items.length === 0}
+          onPress={handleFinishOrder}
         >
-          <Text style={styles.buttonText}>Avançar</Text>
+          <Text style={styles.buttonText}>Enviar pedido</Text>
         </TouchableOpacity>
       </View>
 
