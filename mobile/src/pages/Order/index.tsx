@@ -130,6 +130,20 @@ export default function Order() {
     setItems((oldArray) => [...oldArray, data]);
   }
 
+  async function handleDeleteItem(item_id: string) {
+    const response = await api.delete("/order/remove", {
+      params: {
+        item_id: item_id,
+      },
+    });
+    // Após remover da api, remover i item da lista que está na page
+    let removeItem = items.filter((item) => {
+      return item.id !== item_id;
+    });
+
+    setItems(removeItem);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -184,7 +198,12 @@ export default function Order() {
         style={{ flex: 1, marginTop: 24 }}
         data={items}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ListItem data={item} />}
+        renderItem={({ item }) => (
+          <ListItem
+            data={item}
+            deleteItem={(item_id) => handleDeleteItem(item_id)}
+          />
+        )}
       />
 
       <Modal
