@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { Feather } from "@expo/vector-icons";
-import { api } from "../../services/api";
 
 interface ItemProps {
   data: {
@@ -22,7 +21,7 @@ export function ListItem({ data, deleteItem }: ItemProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.item}>
-        Qtd={data.amount} - {data.name}
+        Qtd = {data.amount} x {data.name}
       </Text>
       <TouchableOpacity onPress={handleDeleteItem}>
         <Feather name="trash-2" color={"#FF3F4B"} size={25} />

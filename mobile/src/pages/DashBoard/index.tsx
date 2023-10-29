@@ -15,8 +15,6 @@ import { StackParamsList } from "../../routes/app.routes";
 
 import { api } from "../../services/api";
 
-import { AuthContext } from "../../contexts/AuthContex";
-
 export default function DashBoard() {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackParamsList>>();

@@ -12,7 +12,10 @@ export type StackParamsList = {
     order_id: string;
     name_client?: string;
   };
-  FinishOrder: undefined;
+  FinishOrder: {
+    number: number | string;
+    order_id: string;
+  };
 };
 
 // Pages for authenticated users 'Attention'
